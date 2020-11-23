@@ -7,20 +7,46 @@ type AuthResult {
   jwt: String!
 }
 
+type HomePage {
+  posts: [Post!]!
+}
+
 type Mutation {
+  convertToCreator: User!
   signin(email: String!, password: String!): AuthResult!
   signup(email: String!, name: String!, password: String!): AuthResult!
+  subscribe(user: ID!): User!
+}
+
+type Post {
+  assetUrl: String!
+  id: ID!
+  text: String
+  type: PostType!
+}
+
+enum PostType {
+  PHOTO
+  TEXT
+  VIDEO
 }
 
 type Query {
+  home: HomePage!
+  user(id: ID!): User!
   viewer: User
 }
 
 type User {
+  bio: String
   displayName: String!
   email: String!
   id: ID!
+  isCurrentlySubscribed: Boolean!
   legalName: String!
+  posts: [Post!]!
+  postsCount: Int!
+  subscribersCount: Int!
   type: UserType!
 }
 

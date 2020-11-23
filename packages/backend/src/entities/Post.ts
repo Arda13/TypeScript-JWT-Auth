@@ -4,7 +4,7 @@ import { Lazy } from "../types";
 import { User } from "./User";
 
 
-enum PostType {
+export enum PostType {
     TEXT,
     VIDEO,
     PHOTO
